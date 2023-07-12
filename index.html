@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seat</title>
+        <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .flex {
+                display: grid;
+                grid-template-columns: 2fr 2fr 2fr 2fr;
+                gap: 30px;
+
+            }
+            input {
+                width: 50px;
+                height: 60px;
+                text-align: center;
+                background: red;
+                color: white;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex">
+            <input id="seat1" value="1" readonly>
+            <input id="seat2" value="2" readonly>
+            <input id="seat3" value="3" readonly>
+            <input id="seat4" value="4" readonly>
+            <input id="seat5" value="5" readonly>
+            <input id="seat6" value="6" readonly>
+            <input id="seat7" value="7" readonly>
+            <input id="seat8" value="8" readonly>
+        </div>
+
+        <label for="">Selected Seats</label>
+        <p class="" id="display"></p>
+
+
+        <button id="bookBtn" type="submit" value="Book">Book</button>
+
+
+        <script>
+            let seat_arr = [];
+
+            $(document).ready(function () {
+                $('#seat1').click(function () {
+                    const indexBool = seat_arr.includes(1)
+                    if (! indexBool) {
+                        seat_arr.push(1);
+                        document.getElementById('display').innerText += '1,';
+                    } else {
+                        alert("Seat Already Selected")
+                    }
+
+                })
+                $('#seat2').click(function () {
+                    const indexBool = seat_arr.includes(2);
+                    if (! indexBool) {
+                        seat_arr.push(2)
+                        document.getElementById('display').innerText += '2,';
+                    } else {
+                        alert("Seat Already Selected")
+                    }
+
+                })
+                $('#seat3').click(function () {
+                    const indexBool = seat_arr.includes(3);
+                    if (! indexBool) {
+                        seat_arr.push(3)
+                        document.getElementById('display').innerText += '3,';
+                    } else {
+                        alert("Seat Already Selected")
+                    }
+                })
+                $('#seat4').click(function () {
+                    const indexBool = seat_arr.includes(4);
+                    if (! indexBool) {
+                        seat_arr.push(4)
+                        document.getElementById('display').innerText += '4,';
+                    } else {
+                        alert("Seat Already Selected")
+                    }
+                })
+                $('#seat5').click(function () {
+                    const indexBool = seat_arr.includes(5);
+                    if (! indexBool) {
+                        seat_arr.push(5)
+                        document.getElementById('display').innerText += '5,';
+                    } else {
+                        alert("Seat Already Selected")
+                    }
+                })
+                $('#seat6').click(function () {
+                    const indexBool = seat_arr.includes(6);
+                    if (! indexBool) {
+                        seat_arr.push(6)
+                        document.getElementById('display').innerText += '6,';
+                    } else {
+                        alert("Seat Already Selected")
+                    }
+                })
+                $('#seat7').click(function () {
+                    const indexBool = seat_arr.includes(7);
+                    if (! indexBool) {
+                        seat_arr.push(7)
+                        document.getElementById('display').innerText += '7,';
+                    } else {
+                        alert("Seat Already Selected")
+                    }
+                })
+                $('#seat8').click(function () {
+                    const indexBool = seat_arr.includes(8);
+                    if (! indexBool) {
+                        seat_arr.push(8)
+                        document.getElementById('display').innerText += '8,';
+                    } else {
+                        alert("Seat Already Selected")
+                    }
+                })
+
+                $('#bookBtn').click(() => {
+                    if (seat_arr.length > 0) {
+                        console.log(seat_arr)
+                        $.ajax({
+                            url: "http://localhost:8080/SeatBookingSystem/bookMe.php",
+                            method: "POST",
+                            data: {
+                                seats: JSON.stringify(seat_arr)
+                            },
+                            success: function (res) {
+                                console.log(res)
+                            }
+                        })
+                    }
+                    else{
+                        alert("No Seats Selected")
+                    }
+
+                })
+            })
+        </script>
+    </body>
+</html>
